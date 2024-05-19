@@ -1,15 +1,15 @@
 import React from 'react'
-import { sortTodosByDate, sortTodosByPriority } from '../../Helpers/Sort';
+import { sortExpensesByAmount, sortExpensesByDate } from '../../Helpers/Sort';
 
-const SortTodos = ({todos, setTodos}) => {
+const SortExpenses = ({expenses, setExpenses}) => {
     
-    const handleSortByPriority = () => {
-        setTodos(sortTodosByPriority(todos));
+    const handleSortByAmount = () => {
+        setExpenses(sortExpensesByAmount(expenses));
         //console.log(pendingTodos);
       };
     
     const handleSortByDate = () => {
-      setTodos(sortTodosByDate(todos));
+      setExpenses(sortExpensesByDate(expenses));
     }
       
   return (
@@ -17,7 +17,7 @@ const SortTodos = ({todos, setTodos}) => {
       <div className='bg-opacity-60  justify-center md:flex gap-5 py-3 w-96'>
         <button
             className='bg-neutral-600 hover:bg-neutral-400 text-white font-bold py-2 px-4 rounded'
-            onClick={handleSortByPriority}>Sort by Priority
+            onClick={handleSortByAmount}>Sort by Amount
         </button>
         <button
             className='bg-neutral-600 hover:bg-neutral-400 text-white font-bold py-2 px-4 rounded'
@@ -28,4 +28,4 @@ const SortTodos = ({todos, setTodos}) => {
   )
 }
 
-export default SortTodos
+export default SortExpenses

@@ -1,11 +1,11 @@
 
-export const sortTodosByPriority = (todos) => {
-    const sortedTodos = [...todos].sort((a, b) => a.priority.localeCompare(b.priority));
-    return sortedTodos;
+export const sortExpensesByAmount = (expenses) => {
+    const sortedExpenses = [...expenses].sort((a, b) => a.amount.localeCompare(b.amount));
+    return sortedExpenses;
   };
 
-  export const sortTodosByDate = (todos) => {
-    const sortedTodos = [...todos].sort((a, b) => new Date(a.dueDate)- new Date(b.dueDate));
-    return sortedTodos;
+  export const sortExpensesByDate = (expenses) => {
+    const sortedExpenses = [...expenses].sort((a, b) => new Date(a.createdDate)- new Date(b.createdDate));
+    return sortedExpenses;
   };
   

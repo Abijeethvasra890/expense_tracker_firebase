@@ -8,17 +8,17 @@ const Data = ({ salary, amountRemaining, totalExpenses, totalSavings, totalInves
     };
 
   return (
-    <div className='bg-slate-200 rounded bg-opacity-20 items-center flex flex-col mr-10 mb-10 mt-10 w-10/12 md:w-full flex-wrap justify-center py-5 px-2 mx-5'>
+    <div className='bg-slate-200 rounded bg-opacity-20 items-center flex flex-col mr-10 mb-10 mt-10 w-10/12 md:w-screen flex-wrap justify-center py-5 px-2 mx-5'>
       <h3 className="text-2xl text-white font-semibold mb-4">Financial Overview</h3>
       <div className="w-full flex flex-wrap justify-around text-white">
-        <div className="flex flex-col items-center m-2">
+        {salary && <div className="flex flex-col items-center m-2">
           <h4 className="text-xl font-semibold">Salary</h4>
           <p className="text-lg">{salary}</p>
-        </div>
-        <div className="flex flex-col items-center m-2">
+        </div>}
+        {amountRemaining && <div className="flex flex-col items-center m-2">
           <h4 className="text-xl font-semibold">Amount Remaining</h4>
           <p className="text-lg">{amountRemaining}</p>
-        </div>
+        </div>}
         <div className="flex flex-col items-center m-2">
           <h4 className="text-xl font-semibold">Total Expenses</h4>
           <p className="text-lg">{totalExpenses}</p>
@@ -32,7 +32,7 @@ const Data = ({ salary, amountRemaining, totalExpenses, totalSavings, totalInves
           <p className="text-lg">{totalInvestments}</p>
         </div>
       </div>
-      <div className="w-full flex justify-center mt-4">
+      {onAddSalary && <div className="w-full flex justify-center mt-4">
         <input
           type="text"
           placeholder="Enter new salary"
@@ -46,7 +46,7 @@ const Data = ({ salary, amountRemaining, totalExpenses, totalSavings, totalInves
         >
           Add Salary
         </button>
-      </div>
+      </div>}
     </div>
   );
 }

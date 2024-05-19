@@ -15,7 +15,7 @@ const AllExpenses = () => {
 
   const expenses = useSelector((state) => state.expenses.expenses);
 
-  const [salary, setSalary] = useState('5000'); // Initial salary as a number
+  const [salary, setSalary] = useState('5000'); 
 
   // Get the current month and year
   const currentMonth = new Date().getMonth();
@@ -62,11 +62,11 @@ const AllExpenses = () => {
         }}
       >
         <Data
-          salary={`$${salary}`}
-          amountRemaining={`$${amountRemaining}`}
-          totalExpenses={`$${totalExpenses}`}
-          totalSavings={`$${totalSavings}`}
-          totalInvestments={`$${totalInvestments}`}
+          salary={`${salary}`}
+          amountRemaining={`${amountRemaining}`}
+          totalExpenses={`${totalExpenses}`}
+          totalSavings={`${totalSavings}`}
+          totalInvestments={`${totalInvestments}`}
           onAddSalary={handleAddSalary}
         />
         <div className='flex flex-col md:flex-row'>
