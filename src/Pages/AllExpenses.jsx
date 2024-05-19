@@ -5,6 +5,7 @@ import { fetchExpensesAsync } from '../redux/Slices/ExpenseSlice';
 import AddExpense from '../Components/AddExpense/AddExpense';
 import ListExpense from '../Components/ListExpense/ListExpense';
 import Data from '../Components/Data/Data';
+import Graph from '../Components/Graph/Graph';
 
 const AllExpenses = () => {
   const dispatch = useDispatch();
@@ -30,15 +31,15 @@ const AllExpenses = () => {
   // Calculate total expenses for each type
   const totalExpenses = currentMonthExpenses
     .filter(expense => expense.type === 'Expense')
-    .reduce((total, expense) => total + parseFloat(expense.amount), 0);
+    .reduce((total, expense) => total + parseFloat(expense.amount || 0), 0);
 
   const totalSavings = currentMonthExpenses
     .filter(expense => expense.type === 'Savings')
-    .reduce((total, expense) => total + parseFloat(expense.amount), 0);
+    .reduce((total, expense) => total + parseFloat(expense.amount || 0), 0);
 
   const totalInvestments = currentMonthExpenses
     .filter(expense => expense.type === 'Investment')
-    .reduce((total, expense) => total + parseFloat(expense.amount), 0);
+    .reduce((total, expense) => total + parseFloat(expense.amount ||0), 0);
 
   // Calculate amount remaining
   const amountRemaining = parseFloat(salary) - totalExpenses - totalSavings - totalInvestments;
@@ -46,6 +47,7 @@ const AllExpenses = () => {
   // Function to handle adding a new salary
   const handleAddSalary = (newSalary) => {
     setSalary(newSalary);
+
   };
 
 
@@ -70,7 +72,11 @@ const AllExpenses = () => {
           onAddSalary={handleAddSalary}
         />
         <div className='flex flex-col md:flex-row'>
-          <AddExpense />
+          <div className='flex flex-col'>
+            <AddExpense />
+            <Graph expenses={currentMonthExpenses}/>
+          </div>
+          
           <ListExpense expenses={currentMonthExpenses} />
         </div>
       </div>

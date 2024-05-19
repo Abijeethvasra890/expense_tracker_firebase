@@ -36,7 +36,11 @@ const AddExpense = () => {
       if(auth.currentUser == null){
         alert("Please Sign in to Add Todos");
       }else{
-        dispatch(addExpenseAsync({name, amount, type, method, createdDate }));
+        if(name != '' && amount != ''){
+          dispatch(addExpenseAsync({name, amount, type, method, createdDate }));
+        }else{
+          alert("Fill Name and Amount Fields");
+        }
         setName('');
         setAmount('');
         setType('Expense');
@@ -45,7 +49,7 @@ const AddExpense = () => {
     };
 
   return (
-    <div className='bg-slate-200 rounded bg-opacity-20 items-center flex w-10/12 md: md:w-4/12 h-4/5 justify-center py-5 px-2 mx-5'>
+    <div className='bg-slate-200 rounded bg-opacity-20 items-center flex w-10/12 md:w-72 justify-center py-5 px-2 mx-5'>
       <div className='flex flex-col'>
         <div className='flex flex-col items-center sm:flex-col md:flex-col gap-2'>
           <input

@@ -34,7 +34,7 @@ const Data = ({ salary, amountRemaining, totalExpenses, totalSavings, totalInves
       </div>
       {onAddSalary && <div className="w-full flex justify-center mt-4">
         <input
-          type="text"
+          type="number"
           placeholder="Enter new salary"
           value={newSalary}
           onChange={(e) => setNewSalary(e.target.value)}

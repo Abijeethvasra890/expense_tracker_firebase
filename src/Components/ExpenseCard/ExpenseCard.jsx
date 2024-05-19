@@ -13,9 +13,12 @@ const ExpenseCard = ({ expense }) => {
 
   return (
     <div key={expense.id} className= {`p-4 rounded-lg shadow-md ${bgcard}`}>
-      <div className='flex justify-between'>
+      <div>
         <div>
-          <h3 className="text-xl text-black font-semibold">{expense.name}</h3>
+          <div className='flex justify-between'>
+            <h3 className="text-xl text-black font-semibold">{expense.name}</h3>
+            <p className="text-black font-semibold">{expense.method}</p>
+          </div>
           <h5 className="text-l text-black font-semibold mb-2">{expense.amount}</h5>
           <p className="text-gray-600">{expense.type}</p>
           <p className="text-gray-600">{expense.createdDate}</p>

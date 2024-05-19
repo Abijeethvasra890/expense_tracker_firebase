@@ -77,7 +77,7 @@ const Navbar = () => {
         </Link>}
         {isLoggedIn &&
           <>
-            <div className='text-sm items-center justify-center font-serif mx-5 px-2 py-2'>Hi {auth?.currentUser?.email}</div>
+            <div className='text-sm items-center justify-center font-serif mt-1 mx-5 px-2 py-2'>Hi {auth?.currentUser?.displayName}</div>
             <button
               className="bg-black hover:bg-neutral-700 text-white font-bold py-2 px-4 rounded w-28 items-center justify-center"
               onClick={handleSignOut}
