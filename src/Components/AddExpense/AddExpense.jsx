@@ -9,6 +9,8 @@ const AddExpense = () => {
     const [amount, setAmount] = useState('');
     const [type, setType] = useState('Expense');
     const [method, setMethod] = useState('UPI');
+    const currentDate = new Date().toISOString().split('T')[0];
+    const [createdDate, setCreatedDate] = useState(currentDate);
     const dispatch = useDispatch();
   
     const handleNameChange = (event) => {
@@ -27,12 +29,13 @@ const AddExpense = () => {
       setMethod(event.target.value);
     };
 
-  
+    const handledateChange = (event) =>{
+      setCreatedDate(event.target.value);
+    }
     const handleAddExpense = async() => {
       if(auth.currentUser == null){
         alert("Please Sign in to Add Todos");
       }else{
-        const createdDate = new Date().toISOString().split('T')[0];
         dispatch(addExpenseAsync({name, amount, type, method, createdDate }));
         setName('');
         setAmount('');
@@ -42,7 +45,7 @@ const AddExpense = () => {
     };
 
   return (
-    <div className='bg-slate-200 rounded bg-opacity-20 items-center flex w-10/12 md:mt-10 md:w-4/12 h-4/5 justify-center py-5 px-2 mx-5'>
+    <div className='bg-slate-200 rounded bg-opacity-20 items-center flex w-10/12 md: md:w-4/12 h-4/5 justify-center py-5 px-2 mx-5'>
       <div className='flex flex-col'>
         <div className='flex flex-col items-center sm:flex-col md:flex-col gap-2'>
           <input
@@ -58,6 +61,13 @@ const AddExpense = () => {
             placeholder='Amount'
             value={amount}
             onChange={handleAmountChange}
+          />
+          <input
+            className="py-3 px-4 w-11/12 md:w-52 border-2 border-gray-200 rounded-lg text-md"
+            type='date'
+            placeholder='date'
+            value={createdDate}
+            onChange={handledateChange}
           />
            <select
             value={type}

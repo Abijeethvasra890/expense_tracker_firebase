@@ -8,8 +8,9 @@ const EditExpense = ({ expense }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editedName, setEditedName] = useState(expense.name);
   const [editedAmount, setEditedAmount] = useState(expense.amount);
-  //const [editedType, setEditedType] = useState(expense.type);
-  //const [editedMethod, setEditedMethod] = useState(expense.method);
+  const [editedType, setEditedType] = useState(expense.type);
+  const [editedMethod, setEditedMethod] = useState(expense.method);
+  const [editedDate, setEditedDate] = useState(expense.createdDate);
   const dispatch = useDispatch();
  
   const handleOpenModal = () => {
@@ -27,18 +28,22 @@ const EditExpense = ({ expense }) => {
   const handleAmountChange = (event) => {
     setEditedAmount(event.target.value);
   };
-/*
+
   const handleTypeChange = (event) =>{
       setEditedType(event.target.value); 
   };
   
   const handleMethodChange = (event) =>{
     setEditedMethod(event.target.value); 
-}; */
+}; 
+
+  const handledateChange = (event) => {
+    setEditedDate(event.target.value);
+  }
 
   const handleSaveChanges = () => {
     // Dispatch editTodo action with the updated todo data
-    dispatch(updateExpenseAsync(expense.id,{ name: editedName, amount: editedAmount }));
+    dispatch(updateExpenseAsync(expense.id,{ name: editedName, amount: editedAmount, type: editedType, method: editedMethod, createdDate: editedDate }));
     setIsModalOpen(false);
   };
  
@@ -71,6 +76,37 @@ const EditExpense = ({ expense }) => {
           onChange={handleAmountChange}
           className="py-3 m-2 md:w-64 sm:w-full px-4 border-2 border-gray-200 rounded-lg text-md"
         />
+        <label>Expense Date: </label>
+        <input
+           className="py-3 m-2 md:w-64 sm:w-full px-4 border-2 border-gray-200 rounded-lg text-md"
+            type='date'
+            value={editedDate}
+            onChange={handledateChange}
+          />
+
+        <label>Expense Type: </label>
+        <select
+            value={editedType}
+            onChange={handleTypeChange}
+            className="py-3 m-2 md:w-64 sm:w-full px-4 border-2 border-gray-200 rounded-lg text-md"
+          >
+            <option value="Expense">Expense</option>
+            <option value="Savings">Savings</option>
+            <option value="Investment">Investment</option>
+          </select>
+
+        <label>Expense Method: </label>
+        <select
+            value={editedMethod}
+            onChange={handleMethodChange}
+            className="py-3 w-11/12 md:w-52 px-4 border-2 border-gray-200 rounded-lg text-md"
+          >
+            <option value="UPI">UPI</option>
+            <option value="CC">CC</option>
+            <option value="DC">DC</option>
+            <option value="App">Banking App</option>
+            <option value="Cash">Cash</option>
+          </select>
 
         <div className="mt-4">
           <button
